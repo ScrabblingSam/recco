@@ -6,7 +6,7 @@ ReCCO: To Reverse Complement and Concatenate contigs in Order.
 This tool aims to improve the usability of DiGAlign, a genome alignment viewer that computes and interactively visualizes the alignments of your input nucleotide sequences.
 
 ### Objective
-ReCCO is developed to allow DiGAlign to compare genomes consisting of multiple contigs. By default, DiGAlign takes a multi-fasta nucleotide file as an input, and aligns the individual sequences to each other. When the user wants to compare multi-contig genomes, the contigs of each genome need to be concatenated before input to DiGAlign. However, in many cases, the order and orientation of the contigs in a genome are unknown. Thus, a simple concatenation of the contigs without rearrangement would result in alignments of segments with mixed order and orientation, which would look like below:
+ReCCO is developed to allow DiGAlign to compare genomes consisting of multiple contigs. By default, DiGAlign takes a multi-fasta nucleotide file as an input and aligns the individual sequences to each other. When the user wants to compare multi-contig genomes, the contigs of each genome need to be concatenated before input to DiGAlign. However, in many cases, the order and orientation of the contigs in a genome are unknown. Thus, a simple concatenation of the contigs without rearrangement would result in alignments of segments with mixed order and orientation, which would look like below:
 
 [Figure showing alignment from simple concatenation]
 ![Figure showing alignment from simple concatenation](docs/images/simple_concatenation.png)
@@ -20,8 +20,8 @@ ReCCO solves this problem by flipping and reordering contigs before the concaten
 ### Workflow
 
 1. The user needs to prepare input nucleotide fasta files to be compared to each other. Each fasta file should contain contigs of a genome. From the input files, the user needs to determine one reference file, which is usually the best-quality assembly in the dataset.
-2. ReCCO takes the reference and query nucleotide fasta files as an input. If the reference is a multi-fasta file, the contigs are concatenated without rearrangement. 
-3. Each of the contigs from the query fastas are aligned to the concatenated reference sequence using BLASTn.
+2. ReCCO takes the reference and query nucleotide fasta files as input. If the reference is a multi-fasta file, the contigs are concatenated without rearrangement. 
+3. Each of the contigs from the query fastas is aligned to the concatenated reference sequence using BLASTn.
 4. The longest alignment is selected for each query contig. 
 5. For each query genome, the contigs are sorted based on the alignment start positions. The contig is flipped to the reverse complement if it is aligned to the reference in the opposite orientation.
 6. For each query genome, the rearranged query contigs are concatenated with the insertion of the user-determined number (default=1000) of "N" bases at each concatenated site. Contigs unaligned to the reference are concatenated at the end of the aligned contigs.
@@ -33,7 +33,7 @@ ReCCO solves this problem by flipping and reordering contigs before the concaten
   * Biopython 
   * BLAST+ 
 
-* To install ReCCO, just download the python script and place it in an executable directory.
+* To install ReCCO, download the Python script and place it in an executable directory.
 
 ### Usage 
 - **-i:** Input directory: Directory containing both query and reference fasta files. The extensions of the files should be .fasta, .fa, or .fna (Required)　
@@ -45,7 +45,7 @@ ReCCO solves this problem by flipping and reordering contigs before the concaten
 - **-b:** Blast bin directory: Path to the directory of the blastn executable. (Required if it is not in the environment) 
 
 #### Example:
-You can download the example files here: [XXXX] 
+You can download the example files here: [https://www.genome.jp/ftp/tools/ReCCO/ReCCO_ExampleFiles.zip] 
 
 ```python ReCCO.py -i Example_files/ -r CP024034.fasta -o output ``` 
 
@@ -55,7 +55,7 @@ Below the output directory, there will be a file named "ToDiGAlign.fasta" and tw
 * ToDiGAlign.fasta
 
   * A file containing the concatenated reference and query genomes. This can be directly used as an input to DiGAlign.
-  * The concatenated query sequences are renamed by adding the user-defined suffix (with "-s" option) to the original file name.
+  * The concatenated query sequences are renamed by adding the user-defined suffix (with the "-s" option) to the original file name.
   * The reference sequence is renamed by adding "_CR" (Concatenated Reference) as the suffix to the original file name.
 
 * "edited_fasta_file" directory
@@ -71,7 +71,7 @@ When the output directory (given by the -o option) already exists, the user will
 
 ### Version history
 
-* 2023-xx-xx: v1.0-beta Initial release of ReCCO
+* 2023-12-28: v1.0-beta Initial release of ReCCO
 
 ### Developer
 * Peijie Yan, Kyoto University
