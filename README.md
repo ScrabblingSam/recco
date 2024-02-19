@@ -8,14 +8,12 @@ This tool aims to improve the usability of DiGAlign, a genome alignment viewer t
 ### Objective
 ReCCO is developed to allow DiGAlign to compare genomes consisting of multiple contigs. By default, DiGAlign takes a multi-fasta nucleotide file as an input, and aligns the individual sequences to each other. When the user wants to compare multi-contig genomes, the contigs of each genome need to be concatenated before input to DiGAlign. However, in many cases, the order and orientation of the contigs in a genome are unknown. Thus, a simple concatenation of the contigs without rearrangement would result in alignments of segments with mixed order and orientation, which would look like below:
 
-[Figure showing alignment from simple concatenation]
-![Alt text](simple_concatenation.png)
+![Figure showing alignment from simple concatenation](docs/images/simple_concatenation.png)
 
 
 ReCCO solves this problem by flipping and reordering contigs before the concatenation based on an alignment against a reference genome provided by the user (usually the best-quality assembly in the dataset). The alignment of the ReCCO output from the same input genome looks like this:
 
-[Figure showing alignment after ReCCO]
-![Alt text](ReCCO_alignment.png)
+![Figure showing alignment after ReCCO](docs/images/ReCCO_alignment.png)
 
 ### Workflow
 
